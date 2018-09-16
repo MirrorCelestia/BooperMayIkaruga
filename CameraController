@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraController : MonoBehaviour {
+
+    private GameObject thePlayerObject;
+    private Vector3 cameraPosition;
+
+	// Use this for initialization
+	private void Start () {
+        thePlayerObject = GameObject.FindGameObjectWithTag("Player");
+    }
+	
+	// Update is called once per frame
+	private void Update () {
+        MoveCameraPosition();
+        AdjustCameraRotation();
+    }
+
+    public void MoveCameraPosition() {
+        Vector3 relativepos = thePlayerObject.transform.TransformPoint(0, 2, -5);
+        transform.position = relativepos;
+    }
+
+    public void AdjustCameraRotation() {
+        Quaternion myNewRotation = thePlayerObject.transform.rotation;
+        transform.rotation = myNewRotation;
+    }
+
+}
